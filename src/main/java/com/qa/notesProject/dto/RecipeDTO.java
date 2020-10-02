@@ -1,6 +1,8 @@
 package com.qa.notesProject.dto;
 
-import com.qa.notesProject.persistence.domain.Recipe;
+import java.util.ArrayList;
+import java.util.List;
+import com.qa.notesProject.persistence.domain.Ingredients;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,22 +11,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 
-public class IngredientDTO {
-	
+public class RecipeDTO {
+
 	private Long id;
+	
+
 	private String name;
-	private String foodGroup;
-	private Double price;
-	private Double weight;
-	private Recipe recipe;
+	
+
+	private String difficulty;
 	
 	
+    private List<Ingredients> ingredients = new ArrayList<>();
 }
