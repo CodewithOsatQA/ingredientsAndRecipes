@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -36,6 +37,9 @@ public class Ingredients {
 	
 	@Min((long)0.1)
 	private Double weight;
+	
+	@ManyToOne
+	private Recipe recipe;
 	
 	public Ingredients(String name, String foodGroup, Double price, Double weight) {
         super();
