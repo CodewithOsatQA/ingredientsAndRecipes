@@ -2,7 +2,7 @@ package com.qa.notesProject.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.qa.notesProject.persistence.domain.Ingredients;
+
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
