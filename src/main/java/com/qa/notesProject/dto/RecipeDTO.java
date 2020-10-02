@@ -29,5 +29,5 @@ public class RecipeDTO {
 	private String difficulty;
 	
 	
-    private List<Ingredients> ingredients = new ArrayList<>();
+    private List<IngredientDTO> ingredients = new ArrayList<>();
 }
