@@ -1,6 +1,6 @@
 package com.qa.notesProject.service;
 
-import java.awt.Image;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.notesProject.dto.IngredientDTO;
+import com.qa.notesProject.exceptions.IngredientsNotFoundException;
 import com.qa.notesProject.persistence.domain.Ingredients;
 import com.qa.notesProject.persistence.repository.IngredientRepository;
 
@@ -44,6 +45,10 @@ public class IngredientService{
 		Ingredients found = this.repository.findById(id).orElseThrow(IngredientsNotFoundException::new);
 		return this.mapToDTO(found);
 				
+	}
+	public IngredientDTO update(IngredientDTO ingredientDTO, Long id) {
+		Ingredients toUpdate = this.repository.findById(id).orElseThrow(IngredientsNotFoundException::new);
+		
 	}
 }
 
