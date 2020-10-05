@@ -38,6 +38,11 @@ public class RecipeService {
 		return stream;
 	}
 	
+	public RecipeDTO read(Long id) {
+		Recipe found = this.repository.findById(id).orElseThrow(RecipeNotFoundException::new);
+		return this.mapToDTO(found);
+	}
+	
 	public RecipeDTO update(RecipeDTO recipeDTO, Long id) {
 		Recipe toChange = this.repository.findById(id).orElseThrow(RecipeNotFoundException::new);
 		BakedBeanUtils.mergeNotNUll(recipeDTO, toChange);
