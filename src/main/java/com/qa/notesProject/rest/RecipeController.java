@@ -20,7 +20,7 @@ import com.qa.notesProject.service.RecipeService;
 
 
 @RestController
-@RequestMapping("/band")
+@RequestMapping("/recipe")
 public class RecipeController {
 
     private RecipeService service;

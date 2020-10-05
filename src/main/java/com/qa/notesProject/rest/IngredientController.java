@@ -1,6 +1,5 @@
 package com.qa.notesProject.rest;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,9 @@ import com.qa.notesProject.persistence.domain.Ingredients;
 import com.qa.notesProject.service.IngredientService;
 
 
+
 @RestController
-@RequestMapping("/ingredients")
+@RequestMapping("/ingredient")
 public class IngredientController {
 
     private IngredientService service;
@@ -32,25 +32,20 @@ public class IngredientController {
         this.service = service;
     }
 
-//    @PostMapping("/create")
-//    public ResponseEntity<IngredientDTO> create(@RequestBody IngredientDTO ingredientDTO) {
-//        return new ResponseEntity<>(this.service.create(ingredientDTO), HttpStatus.CREATED);
-//    }
-
     @PostMapping("/create")
     public ResponseEntity<IngredientDTO> create(@RequestBody Ingredients ingredient) {
         IngredientDTO created = this.service.create(ingredient);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    @GetMapping("/read")
-    public ResponseEntity<List<IngredientDTO>> read() {
-        return ResponseEntity.ok(this.service.read());
-    }
-
     @GetMapping("/read/{id}")
     public ResponseEntity<IngredientDTO> read(@PathVariable Long id) {
         return ResponseEntity.ok(this.service.read(id));
+    }
+
+    @GetMapping("/read")
+    public ResponseEntity<List<IngredientDTO>> read() {
+        return ResponseEntity.ok(this.service.read());
     }
 
     @PutMapping("/update/{id}")
@@ -60,7 +55,8 @@ public class IngredientController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<IngredientDTO> delete(@PathVariable Long id) {
-        return this.service.delete(id) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
-                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return this.service.delete(id) ? new ResponseEntity<>(HttpStatus.NO_CONTENT) // 204
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // 500
     }
+
 }
