@@ -24,7 +24,7 @@ public class IngredientDTO {
 	private String foodGroup;
 	private Double price;
 	private Double weight;
-	private Recipe recipe;
+
 	
 	
 }
