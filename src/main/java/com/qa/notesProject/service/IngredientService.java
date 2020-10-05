@@ -12,6 +12,7 @@ import com.qa.notesProject.dto.IngredientDTO;
 import com.qa.notesProject.exceptions.IngredientsNotFoundException;
 import com.qa.notesProject.persistence.domain.Ingredients;
 import com.qa.notesProject.persistence.repository.IngredientRepository;
+import com.qa.notesProject.utils.BakedBeanUtils;
 
 @Service
 public class IngredientService{
@@ -47,8 +48,20 @@ public class IngredientService{
 				
 	}
 	public IngredientDTO update(IngredientDTO ingredientDTO, Long id) {
-		Ingredients toUpdate = this.repository.findById(id).orElseThrow(IngredientsNotFoundException::new);
+		Ingredients toChange = this.repository.findById(id).orElseThrow(IngredientsNotFoundException::new);
+		BakedBeanUtils.mergeNotNUll(ingredientDTO, toChange);
+		return this.mapToDTO(this.repository.save(toChange));
 		
 	}
+	public boolean delete(Long id) {
+		if (this.repository.existsById(id)) {
+			throw new IngredientsNotFoundException();
+		}
+		this.repository.deleteById(id);
+		return !this.repository.existsById(id);
+	
+	}
+	
+	
 }
 
