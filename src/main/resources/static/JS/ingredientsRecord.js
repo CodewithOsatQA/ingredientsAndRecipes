@@ -1,4 +1,25 @@
-
+fetch('http://localhost:8001/recipe/read')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+      // Examine the text in the response
+      response.json().then(function(data) {
+        //console.log(data);
+        let table = document.querySelector("table");
+        let myData = Object.keys(data[0]);
+        //createTableHead(table,myData);
+        //createTableBody(table,data);
+    addToRecipe(data);
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
 const params = new URLSearchParams(window.location.search);
 
 for (let param of params){
@@ -28,6 +49,7 @@ fetch('http://localhost:8001/ingredient/read/'+id)
         document.getElementById("foodgroup").value = data.foodGroup;
         document.getElementById("price").value = data.price;
         document.getElementById("weight").value = data.weight;
+        
         //document.getElementById("noOfStrings").value = data.strings;
         //document.getElementById("type").value = data.type;
       });
@@ -48,17 +70,17 @@ document.querySelector("form.ingredientRecord").addEventListener("submit",functi
     let foodgroup = formElements["foodgroup"].value;
     let price = formElements["price"].value;
     let weight = formElements["weight"].value;
-    
+    let recipe = formElements["recipe"].value;
     //let name = formElements["name"].value;
     //let strings = parseInt(formElements["noOfStrings"].value);
     //let type = formElements["type"].value;
-    updateRecord(id,name,foodgroup,price,weight);
+    updateRecord(id,name,foodgroup,price,weight,recipe);
 })
 
 
 
 
-function updateRecord(id,name,foodgroup,price,weight){
+function updateRecord(id,name,foodgroup,price,weight,recipe){
     let finalID = parseInt(id);
     fetch("http://localhost:8001/ingredient/update/"+finalID, {
         method: 'PUT',
@@ -70,12 +92,12 @@ function updateRecord(id,name,foodgroup,price,weight){
             "name": name,
             "foodgroup": foodgroup,
             "price": price,
-            "weight": weight
+            "weight": weight,
             // "strings": strings,
             // "type": type,
-            // "band": {
-            //     "id": 1
-            // }
+            "recipe": {
+               "id": recipe
+            }
         })
       })
       .then(json)
@@ -85,8 +107,16 @@ function updateRecord(id,name,foodgroup,price,weight){
       .catch(function (error) {
         console.log('Request failed', error);
       });
-
-
-
-
+}
+function addToRecipe(data){
+    let select = document.getElementById("recipe");
+    for (let recipe of data){
+        let text = document.createTextNode(recipe.name);
+        let option = document.createElement("option")
+        option.appendChild(text);
+        option.value = recipe.id;
+        select.appendChild(option);
+        console.log(recipe.id);
+        console.log(recipe.name);
+    }
 }

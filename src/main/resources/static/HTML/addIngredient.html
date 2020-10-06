@@ -17,24 +17,30 @@
             
             <div class="form-group">
               <label for="name" >Name</label>
-              <input type="text" class="form-control" id="name">
+              <input type="text" class="form-control" id="name" required>
             </div>
              <div class="form-group">
-                <select name="foodgroup" id="foodgroup" class="form-control">
+                <label for="name" >Food Group</label>
+                <select name="foodgroup" id="foodgroup" class="form-control" required>
                     <option value="Dairy">Dairy</option>
                     <option value="Vegetables">Vegetables</option>
                     <option value="Fruit">Fruit</option>
                     <option value="Protein">Protein</option>
                     <option value="Carbohydrates">Carbohydrates</option>
                 </select>
-              </div> 
+              </div>
+              <div class="form-group">
+                <label for="name" >Recipe</label>
+                  <select name="recipe" id="recipe" class="form-control" required>
+
+                  </select></div>
               <div class="form-group">
                 <label for="price">Price</label>
-                <input type="number" min="0" step=".01" class="form-control" id="price">
+                <input type="number" min="0" step=".01" class="form-control" id="price" required>
               </div>
               <div class="form-group">
                 <label for="weight">Weight</label>
-                <input type="number" min="0" step=".01" class="form-control" id="weight">
+                <input type="number" min="0" step=".01" class="form-control" id="weight" required>
               </div>
 
 

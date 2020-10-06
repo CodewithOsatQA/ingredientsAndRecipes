@@ -1,4 +1,25 @@
-
+fetch('http://localhost:8001/recipe/read')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+      // Examine the text in the response
+      response.json().then(function(data) {
+        //console.log(data);
+        let table = document.querySelector("table");
+        let myData = Object.keys(data[0]);
+        //createTableHead(table,myData);
+        //createTableBody(table,data);
+    addToRecipe(data);
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
 const params = new URLSearchParams(window.location.search);
 
 for (let param of params){
@@ -48,17 +69,17 @@ document.querySelector("form.ingredientRecord").addEventListener("submit",functi
     let foodgroup = formElements["foodgroup"].value;
     let price = formElements["price"].value;
     let weight = formElements["weight"].value;
-    
+    let recipe = formElements["recipe"].value;
     //let name = formElements["name"].value;
     //let strings = parseInt(formElements["noOfStrings"].value);
     //let type = formElements["type"].value;
-    updateRecord(name,foodgroup,price,weight);
+    updateRecord(name,foodgroup,price,weight,recipe);
 })
 
 
 
 
-function updateRecord(name,foodgroup,price,weight){
+function updateRecord(name,foodgroup,price,weight,recipe){
     console.log(foodgroup);
     //let finalID = parseInt(id);
     fetch("http://localhost:8001/ingredient/create", {
@@ -72,12 +93,12 @@ function updateRecord(name,foodgroup,price,weight){
             "name": name,
             "foodGroup": foodgroup,
             "price": price,
-            "weight": weight
+            "weight": weight,
             // "strings": strings,
             // "type": type,
-            // "recipe": {
-            //      "id": 1
-            //  }
+            "recipe": {
+                 "id": recipe
+              }
         })
       })
       .then(json)
@@ -91,4 +112,16 @@ function updateRecord(name,foodgroup,price,weight){
 
 
 
+}
+function addToRecipe(data){
+    let select = document.getElementById("recipe");
+    for (let recipe of data){
+        let text = document.createTextNode(recipe.name);
+        let option = document.createElement("option")
+        option.appendChild(text);
+        option.value = recipe.id;
+        select.appendChild(option);
+        console.log(recipe.id);
+        console.log(recipe.name);
+    }
 }
