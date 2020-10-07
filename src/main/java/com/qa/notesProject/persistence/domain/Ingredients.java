@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,7 +22,16 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode
+@Component
 public class Ingredients {
+	
+	public Ingredients(String name, String foodGroup, Double price, Double weight) {
+        super();
+        this.name = name;
+        this.foodGroup = foodGroup;
+        this.price = price;
+        this.weight = weight;
+    }
 	
 	@Id // Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,12 +52,6 @@ public class Ingredients {
 	@ManyToOne
 	private Recipe recipe;
 	
-	public Ingredients(String name, String foodGroup, Double price, Double weight) {
-        super();
-        this.name = name;
-        this.foodGroup = foodGroup;
-        this.price = price;
-        this.weight = weight;
-    }
+	
 
 }
