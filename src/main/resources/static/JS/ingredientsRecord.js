@@ -90,7 +90,7 @@ function updateRecord(id,name,foodgroup,price,weight,recipe){
         body: json = JSON.stringify( {
             "id": finalID,
             "name": name,
-            "foodgroup": foodgroup,
+            "foodGroup": foodgroup,
             "price": price,
             "weight": weight,
             // "strings": strings,
