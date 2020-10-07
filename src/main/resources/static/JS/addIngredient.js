@@ -6,13 +6,7 @@ fetch('http://localhost:8001/recipe/read')
           response.status);
         return;
       }
-      // Examine the text in the response
       response.json().then(function(data) {
-        //console.log(data);
-        let table = document.querySelector("table");
-        let myData = Object.keys(data[0]);
-        //createTableHead(table,myData);
-        //createTableBody(table,data);
     addToRecipe(data);
       });
     }
@@ -22,57 +16,18 @@ fetch('http://localhost:8001/recipe/read')
   });
 const params = new URLSearchParams(window.location.search);
 
-for (let param of params){
-    console.log("here i am", param)
-    let id = param[1];
 
-    getSingleRecord(id);
-}
-
-
-
-function getSingleRecord(id){
-fetch('http://localhost:8001/ingredient/read/'+id)
-  .then(
-    function(response) {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
-        return;
-      }
-
-      // Examine the text in the response
-        response.json().then(function(data) {
-        console.log(data);
-        
-        document.getElementById("name").value = data.name;
-        document.getElementById("foodgroup").value = data.foodGroup;
-        document.getElementById("price").value = data.price;
-        document.getElementById("weight").value = data.weight;
-        //document.getElementById("noOfStrings").value = data.strings;
-        //document.getElementById("type").value = data.type;
-      });
-    }
-  )
-  .catch(function(err) {
-    console.log('Fetch Error :-S', err);
-  });
-}
 
 document.querySelector("form.ingredientRecord").addEventListener("submit",function(stop){
     stop.preventDefault();
 
     let formElements = document.querySelector("form.ingredientRecord").elements;
-    //let id = parseInt(formElements["id"].value);
-    //let difficulty = formElements["difficulty"].value;
     let name = formElements["name"].value;
     let foodgroup = formElements["foodgroup"].value;
     let price = formElements["price"].value;
     let weight = formElements["weight"].value;
     let recipe = formElements["recipe"].value;
-    //let name = formElements["name"].value;
-    //let strings = parseInt(formElements["noOfStrings"].value);
-    //let type = formElements["type"].value;
+   
     updateRecord(name,foodgroup,price,weight,recipe);
 })
 

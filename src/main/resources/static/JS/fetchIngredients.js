@@ -41,9 +41,10 @@ fetch('http://localhost:8001/ingredient/read')
       for (let myRecord of data){
           let row = table.insertRow();
           for (let info in myRecord){
-              console.log(myRecord[info]);
               let cell = row.insertCell();
-              let text = document.createTextNode(myRecord[info]);
+              let text;
+              if (info === "price")text = document.createTextNode("£" + myRecord[info]);
+              else text = document.createTextNode(myRecord[info]);
               cell.appendChild(text);
           }
           let newCell = row.insertCell();

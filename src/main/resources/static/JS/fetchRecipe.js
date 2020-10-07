@@ -33,19 +33,52 @@ fetch('http://localhost:8001/recipe/read')
           row.appendChild(th);
       }
       let th2 = document.createElement("th");
-      let text2 = document.createTextNode("view");
+      let text2 = document.createTextNode("price");
+      th2.appendChild(text2);
+      row.appendChild(th2);
+
+      th2 = document.createElement("th");
+      text2 = document.createTextNode("view");
       th2.appendChild(text2);
       row.appendChild(th2);
   }
   function createTableBody(table, data){
+    
       for (let myRecord of data){
           let row = table.insertRow();
+          let count = 0;
           for (let info in myRecord){
-              console.log(myRecord[info]);
+              count ++;
+              
+              
               let cell = row.insertCell();
+              
+            
+              
+              if (count === 4){
+                for (let ingredient of myRecord["ingredients"]){
+                  let text = document.createTextNode(ingredient.name+" " +"\n");
+                  
+                  cell.appendChild(text);
+              }
+            }
+            else{
               let text = document.createTextNode(myRecord[info]);
               cell.appendChild(text);
+            }
+              
+            
+              
           }
+          let price = row.insertCell();
+          let total = 0;
+          for (let ingredient of myRecord["ingredients"]){
+            let priceIngredient = ingredient.price;
+            total += priceIngredient;
+            
+        }
+          price.appendChild(document.createTextNode("£"+total))
+
           let newCell = row.insertCell();
           let viewButton = document.createElement("a");
           let myButtonValue = document.createTextNode("view");
