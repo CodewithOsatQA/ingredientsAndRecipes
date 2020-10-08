@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -40,8 +42,10 @@ public class Recipe {
 	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredients> ingredients = new ArrayList<>();
 
-    public Recipe(String name) {
-        this.name = name;
+    public Recipe(String name, String difficulty) {
+    	super();
+       this.name = name;
+       this.difficulty = difficulty;
     }
 
 
