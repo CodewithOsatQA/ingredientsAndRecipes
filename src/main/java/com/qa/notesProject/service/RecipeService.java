@@ -50,7 +50,7 @@ public class RecipeService {
 		
 	}
 	public boolean delete(Long id) {
-		if (this.repository.existsById(id)) {
+		if (!this.repository.existsById(id)) {
 			throw new RecipeNotFoundException();
 		}
 		this.repository.deleteById(id);

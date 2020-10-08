@@ -83,3 +83,32 @@ function updateRecord(id,name,difficulty){
 
 
 }
+
+function deleteRecord(){
+  
+  console.log("hello my friends")
+  let finalID = parseInt(document.getElementById("id").value);
+    fetch("http://localhost:8001/recipe/delete/"+finalID, {
+        method: 'DELETE',
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: json = JSON.stringify( {
+            "id": finalID,
+            "name": name,
+            "difficulty": difficulty
+            // "strings": strings,
+            // "type": type,
+            // "band": {
+            //     "id": 1
+            // }
+        })
+      })
+      .then(json)
+      .then(function (data) {
+        console.log('Request succeeded with JSON response', data);
+      })
+      .catch(function (error) {
+        console.log('Request failed', error);
+      });
+}
