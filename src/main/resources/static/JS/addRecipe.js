@@ -74,6 +74,7 @@ function updateRecord(name,difficulty){
       .then(json)
       .then(function (data) {
         console.log('Request succeeded with JSON response', data);
+        window.open('allRecipes.html',"_self");
       })
       .catch(function (error) {
         console.log('Request failed', error);

@@ -120,3 +120,32 @@ function addToRecipe(data){
         console.log(recipe.name);
     }
 }
+
+
+function deleteRecord(){
+  let finalID = parseInt(document.getElementById("id").value);
+    fetch("http://localhost:8001/ingredient/delete/"+finalID, {
+        method: 'DELETE',
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: json = JSON.stringify( {
+            // "id": finalID,
+            // "name": name,
+            // "difficulty": difficulty
+            // "strings": strings,
+            // "type": type,
+            // "band": {
+            //     "id": 1
+            // }
+        })
+      })
+      .then(json)
+      .then(function (data) {
+        console.log('Request succeeded with JSON response', data);
+        window.open('allIngredients.html',"_self");
+      })
+      .catch(function (error) {
+        console.log('Request failed', error);
+      });
+}

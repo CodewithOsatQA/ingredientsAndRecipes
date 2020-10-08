@@ -74,6 +74,7 @@ function updateRecord(id,name,difficulty){
       .then(json)
       .then(function (data) {
         console.log('Request succeeded with JSON response', data);
+        window.open('allRecipes.html',"_self");
       })
       .catch(function (error) {
         console.log('Request failed', error);
@@ -85,8 +86,6 @@ function updateRecord(id,name,difficulty){
 }
 
 function deleteRecord(){
-  
-  console.log("hello my friends")
   let finalID = parseInt(document.getElementById("id").value);
     fetch("http://localhost:8001/recipe/delete/"+finalID, {
         method: 'DELETE',
@@ -107,6 +106,7 @@ function deleteRecord(){
       .then(json)
       .then(function (data) {
         console.log('Request succeeded with JSON response', data);
+        window.open('allRecipes.html',"_self");
       })
       .catch(function (error) {
         console.log('Request failed', error);
