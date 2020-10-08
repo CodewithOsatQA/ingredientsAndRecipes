@@ -59,6 +59,7 @@ function updateRecord(name,foodgroup,price,weight,recipe){
       .then(json)
       .then(function (data) {
         console.log('Request succeeded with JSON response', data);
+        window.open('index.html');
       })
       .catch(function (error) {
         console.log('Request failed', error);

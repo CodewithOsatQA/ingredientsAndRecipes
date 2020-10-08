@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import com.qa.notesProject.dto.IngredientDTO;
 import com.qa.notesProject.persistence.domain.Ingredients;
 import com.qa.notesProject.service.IngredientService;
+
 
 @SpringBootTest
 class IngredientControllerUnitTest {
@@ -67,4 +69,51 @@ class IngredientControllerUnitTest {
 		verify(this.service, times(1)).create(pasta);
 	}
 	
+	@Test
+	void testRead() {
+		when(this.service.read(this.id)).thenReturn(ingredientDTO);
+		
+		IngredientDTO testIngredient = this.ingredientDTO;
+		assertThat(new ResponseEntity<IngredientDTO>(testIngredient, HttpStatus.OK)).isEqualTo(this.controller.read(this.id));
+	}
+	
+	 @Test
+	  void readAllTest() {
+	        when(this.service.read())
+	                .thenReturn(this.listOfIngredients.stream().map(this::mapToDTO).collect(Collectors.toList()));
+	        assertThat(this.controller.read().getBody().isEmpty()).isFalse();
+
+	        
+	 }
+	 @Test
+	  void updateTest() {
+	        IngredientDTO ingredient = new IngredientDTO(null,name, foodGroup, price, weight);
+	        IngredientDTO newIngrdient = new IngredientDTO(this.id, ingredient.getName(), ingredient.getFoodGroup(),
+	                ingredient.getPrice(), ingredient.getWeight());
+
+	        
+	        when(this.service.update(ingredient, this.id)).thenReturn(newIngrdient);
+
+	        assertThat(new ResponseEntity<IngredientDTO>(newIngrdient, HttpStatus.ACCEPTED))
+	                .isEqualTo(this.controller.update(this.id, ingredient));
+
+	        verify(this.service, times(1)).update(ingredient, this.id);
+	    }
+
+	    
+	    @Test
+	    void deleteTest() {
+	        this.controller.delete(id);
+	        verify(this.service, times(1)).delete(id);
+	        
+	    }
+//	    @Test
+//	    void deleteTest2() {
+//	        //this.controller.delete(2L);
+//	        when(this.service.delete(2L)).thenReturn(false);
+//	        assertThat(new ResponseEntity<IngredientDTO>(HttpStatus.NO_CONTENT))
+//            .isEqualTo(this.controller.delete(2L));
+//	        verify(this.service, times(1)).delete(2L);
+//	        
+//	    }
 }
