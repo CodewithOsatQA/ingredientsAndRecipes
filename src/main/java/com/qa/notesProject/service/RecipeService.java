@@ -3,6 +3,8 @@ package com.qa.notesProject.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +15,7 @@ import com.qa.notesProject.persistence.domain.Recipe;
 import com.qa.notesProject.persistence.repository.RecipeRepository;
 import com.qa.notesProject.utils.BakedBeanUtils;
 
-@Service
+@Service @Transactional
 public class RecipeService {
 	private RecipeRepository repository;
 	private ModelMapper mapper;
