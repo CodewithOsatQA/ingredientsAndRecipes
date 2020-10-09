@@ -34,10 +34,11 @@ Once the prerequisites are installed and you have forked or downloaded the zip, 
 2. Open VSCODE and run the index.html on a live server
 ```
 
-3. The website will open up if the previous steps were followed.
-
 ```
-until finished
+3. The website will open up if the previous steps were followed.
+```
+```
+You can now navigate the website and CREATE READ UPDATE and DELETE any entity as you please
 ```
 The database is initialised as empty, so if you navigate to the add recipe page you will be able to add a recipe and you will instantly be taken back to th view all recipes page 
 and see your input there.
