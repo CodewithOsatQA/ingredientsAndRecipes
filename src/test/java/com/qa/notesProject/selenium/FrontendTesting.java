@@ -164,11 +164,12 @@ public class FrontendTesting {
     
     driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[6]/a")).click();
     
+    driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
     
     driver.findElement(By.xpath("/html/body/div/form/button[2]")).click();
     //Check if the page is the one we want
     
-    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
     
     assertEquals(driver.findElement(By.xpath("/html/body/div/h1")).getText(), "View all Recipes Here");
     
