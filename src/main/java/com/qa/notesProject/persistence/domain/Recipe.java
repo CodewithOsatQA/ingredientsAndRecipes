@@ -13,20 +13,19 @@ import javax.validation.constraints.NotNull;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode
+//@ToString
+//@EqualsAndHashCode
 public class Recipe {
 	
 	@Id

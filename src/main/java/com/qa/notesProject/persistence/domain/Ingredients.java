@@ -8,21 +8,18 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode
-@Component
+//@ToString
+//@EqualsAndHashCode
+//@Component
 public class Ingredients {
 	
 	public Ingredients(String name, String foodGroup, Double price, Double weight) {

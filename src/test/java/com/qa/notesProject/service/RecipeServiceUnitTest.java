@@ -123,7 +123,7 @@ class RecipeServiceUnitTest {
 
 
         verify(this.repo, times(1)).findById(1L);
-        verify(this.repo, times(1)).save(updatedRecipe);
+        verify(this.repo, times(1)).save(recipe);
     }
 
     @Test

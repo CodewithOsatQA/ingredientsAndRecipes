@@ -125,7 +125,7 @@ class IngredientServiceUnitTest {
 
 
         verify(this.repo, times(1)).findById(1L);
-        verify(this.repo, times(1)).save(updatedIngredient);
+        verify(this.repo, times(1)).save(ingredient);
     }
 
     @Test
