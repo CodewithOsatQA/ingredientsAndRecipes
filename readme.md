@@ -1,5 +1,5 @@
-Coverage: 34%
-# Project Title
+Coverage: 85.7%
+# Web Application
 
 The a web application that allows the user to CREATE READ UPDATE and DELETE Recipes and Ingredient entitites from a JDBC H2 database using an API built in Java interacting through
 a front end developed using HTML CSS and JS, BootStrap was used for the CSS.
