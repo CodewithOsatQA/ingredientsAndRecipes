@@ -14,10 +14,11 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+
 
 public class FrontendTesting {
 
@@ -34,6 +35,7 @@ public class FrontendTesting {
     @Test
     public void test() {
     driver.get("http://127.0.0.1:5501/HTML/index.html");
+   
     //Test if user is on page by asserting value of h1
     //index
     String actualString = "Welcome to Eat with Os";
@@ -51,8 +53,8 @@ public class FrontendTesting {
     driver.findElement(By.xpath("/html/body/div/form/button")).click();
     
     
-    driver.navigate().to("http://127.0.0.1:5501/HTML/allRecipes.html");
-    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    //driver.navigate().to("http://127.0.0.1:5501/HTML/allRecipes.html");
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     
     
     
@@ -140,13 +142,16 @@ public class FrontendTesting {
     
     driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[6]/a")).click();
     
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
     
     //assertEquals(driver.findElement(By.xpath("/html/body/div/form/div[2]/input")).getText(), "Gravy");
     driver.findElement(By.xpath("/html/body/div/form/button[2]")).click();
     
     driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    driver.get("http://127.0.0.1:5501/HTML/allIngredients.html");
     actualString = "View all Ingredients Here";
+    //wait.until(ExpectedConditions.elementSelectionStateToBe(driver.findElement(By.xpath("/html/body/div/h1")), true));
+    		
     assertEquals(driver.findElement(By.xpath("/html/body/div/h1")).getText(), actualString);
     
     driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -163,7 +168,7 @@ public class FrontendTesting {
     driver.findElement(By.xpath("/html/body/div/form/button[2]")).click();
     //Check if the page is the one we want
     
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     
     assertEquals(driver.findElement(By.xpath("/html/body/div/h1")).getText(), "View all Recipes Here");
     
