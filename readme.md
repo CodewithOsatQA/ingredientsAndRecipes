@@ -21,7 +21,7 @@ Spring - Download link
 
 PostMan - Download link
 
-VSCODE - download link
+VSCODE - Download link
 
 ### Installing
 
@@ -64,9 +64,7 @@ Intergration tests focus on how well parts of code work within the whole system
 
 
 
-## Deployment
 
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
