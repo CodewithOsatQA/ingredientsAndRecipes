@@ -21,22 +21,24 @@ Spring - Download link
 
 PostMan - Download link
 
-VSCODE - download link
+VSCODE - Download link
 
 ### Installing
 
 Once the prerequisites are installed and you have forked or downloaded the zip, the program should run out of the box.
-
+```
 1. Open Eclipse or Spring and run the notesProject.java as a spring app.
+```
 
 ```
 2. Open VSCODE and run the index.html on a live server
 ```
 
-3. The website will open up if the previous steps were followed.
-
 ```
-until finished
+3. The website will open up if the previous steps were followed.
+```
+```
+You can now navigate the website and CREATE READ UPDATE and DELETE any entity as you please
 ```
 The database is initialised as empty, so if you navigate to the add recipe page you will be able to add a recipe and you will instantly be taken back to th view all recipes page 
 and see your input there.
@@ -62,9 +64,7 @@ Intergration tests focus on how well parts of code work within the whole system
 
 
 
-## Deployment
 
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
