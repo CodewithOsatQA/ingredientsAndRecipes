@@ -26,8 +26,9 @@ VSCODE - download link
 ### Installing
 
 Once the prerequisites are installed and you have forked or downloaded the zip, the program should run out of the box.
-
+```
 1. Open Eclipse or Spring and run the notesProject.java as a spring app.
+```
 
 ```
 2. Open VSCODE and run the index.html on a live server
