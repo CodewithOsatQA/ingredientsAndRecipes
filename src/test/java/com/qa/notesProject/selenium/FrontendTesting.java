@@ -50,9 +50,13 @@ public class FrontendTesting {
     driver.findElement(By.xpath("/html/body/div/form/div[2]/select")).sendKeys("Easy");
     driver.findElement(By.xpath("/html/body/div/form/button")).click();
     
-    driver.navigate().to("http://127.0.0.1:5501/HTML/allRecipes.html");
     
+    driver.navigate().to("http://127.0.0.1:5501/HTML/allRecipes.html");
     driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    
+    
+    
+    
     assertEquals(driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[2]")).getText(), "Pasta Bake");
     assertEquals(driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[3]")).getText(), "Easy");
     
@@ -74,7 +78,7 @@ public class FrontendTesting {
     driver.findElement(By.xpath("/html/body/div/form/button")).click();
     
     driver.navigate().to("http://127.0.0.1:5501/HTML/allRecipes.html");
-    
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     assertEquals(driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[2]")).getText(), "Stewed Chicken");
     assertEquals(driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[3]")).getText(), "Hard");
     
@@ -96,7 +100,8 @@ public class FrontendTesting {
     actualString = "View all Ingredients Here";
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     assertEquals(driver.findElement(By.xpath("/html/body/div/h1")).getText(), actualString);
-    
+   
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     assertEquals(driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[2]")).getText(),"Chicken");
     
     //Update Ingredient
@@ -116,17 +121,51 @@ public class FrontendTesting {
     
     //Go to view all Ingredients
     
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    driver.findElement(By.xpath("/html/body/header/nav/div/ul/li[3]/a")).click();
+    
+    //Ensure navigation worked
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    assertEquals(driver.findElement(By.xpath("/html/body/div/h1")).getText(), actualString);
     
     
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    
+    assertEquals(driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[2]")).getText(),"Gravy");
+    assertEquals(driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[3]")).getText(),"Dairy");
+    			
+    assertEquals(driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[4]")).getText(),"£56");
+    assertEquals(driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[5]")).getText(),"67");
     //Delete Ingredient
+    
+    driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[6]/a")).click();
+    
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    
+    //assertEquals(driver.findElement(By.xpath("/html/body/div/form/div[2]/input")).getText(), "Gravy");
+    driver.findElement(By.xpath("/html/body/div/form/button[2]")).click();
+    
+    driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    actualString = "View all Ingredients Here";
+    assertEquals(driver.findElement(By.xpath("/html/body/div/h1")).getText(), actualString);
+    
+    driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     //Delete recipe
+    //Navigate Back to all Recipe page
+    driver.findElement(By.xpath("/html/body/header/nav/div/ul/li[2]/a")).click();
     
-   
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     
     
+    driver.findElement(By.xpath("/html/body/div/table/thead/tr[2]/td[6]/a")).click();
     
     
+    driver.findElement(By.xpath("/html/body/div/form/button[2]")).click();
+    //Check if the page is the one we want
     
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    
+    assertEquals(driver.findElement(By.xpath("/html/body/div/h1")).getText(), "View all Recipes Here");
     
     
 //    WebElement target = driver.findElement(By.xpath("/html/body/header/nav/div/ul/li[4]/a"));
